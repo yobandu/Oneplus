@@ -6,8 +6,6 @@ pipeline {
 	triggers {
         pollSCM '* * * * *'
         }
-	mail bcc: '', body: 'Project build is failed please check the same', cc: '', from: '', replyTo: '', subject: 'Build failure', to: 'abhishek.pise80@gmail.com'
-        stages {
 	  stage('Checkout') {
 	    steps {
 		checkout scm			       
@@ -20,4 +18,22 @@ pipeline {
 	     steps {
 		  sh 'cp target/Oneplus.war /home/abhishek/apache-tomcat-9.0.82/webapps'
 		  }}	
-          }}
+          
+post {
+        failure {
+            script {
+                emailext(
+                    subject: "Build Failed: ${currentBuild.fullDisplayName}",
+                    body: """
+                    The build has failed.
+
+                    Build Details:
+                    - Project: ${JOB_NAME}
+                    - Build Number: ${BUILD_NUMBER}
+                    - Build URL: ${BUILD_URL}
+                    - Changes: ${CHANGES, showPaths: false, format: "  %a: %r %p %m"}
+                    """)
+	           }
+	        }
+     }  
+           }
