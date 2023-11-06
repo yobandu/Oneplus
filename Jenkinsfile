@@ -6,6 +6,7 @@ pipeline {
 	triggers {
         pollSCM '* * * * *'
         }
+	mail bcc: '', body: 'Project build is failed please check the same', cc: '', from: '', replyTo: '', subject: 'Build failure', to: 'abhishek.pise80@gmail.com'
         stages {
 	  stage('Checkout') {
 	    steps {
