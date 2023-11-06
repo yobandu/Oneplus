@@ -21,9 +21,8 @@ pipeline {
           
 post {
         failure {
-            script {
                 mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Build failure', to: 'abhishek.pise80@gmail.com'
-	           }
+	           
 	        }
      }  
            }
