@@ -22,17 +22,7 @@ pipeline {
 post {
         failure {
             script {
-                emailext(
-                    subject: "Build Failed: ${currentBuild.fullDisplayName}",
-                    body: """
-                    The build has failed.
-
-                    Build Details:
-                    - Project: ${JOB_NAME}
-                    - Build Number: ${BUILD_NUMBER}
-                    - Build URL: ${BUILD_URL}
-                    - Changes: ${CHANGES, showPaths: false, format: "  %a: %r %p %m"}
-                    """)
+                mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Build failure', to: 'abhishek.pise80@gmail.com'
 	           }
 	        }
      }  
