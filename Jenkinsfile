@@ -6,23 +6,22 @@ pipeline {
 	triggers {
         pollSCM '* * * * *'
         }
-	  stage('Checkout') {
+	 stage('Slave') {
+	    steps {
+		node('Mens-label') {
+    // some block
+                   }}			       
+	            
+	stage('Checkout') {
 	    steps {
 		checkout scm			       
 	          }}
 	   stage('Build') {
 	     steps {
-		  sh '/home/abhishek/apache-maven-3.9.5-bin/apache-maven-3.9.5/bin/mvn install'
+		  sh '/home/tom/slave-dir/apache-maven-3.9.5/bin/mvn install'
 	          }}
 	   stage('Deployment'){
 	     steps {
-		  sh 'cp target/Oneplus.war /home/abhishek/apache-tomcat-9.0.82/webapps'
+		  sh 'cp target/Oneplus.war /home/tom/slave-dir/apache-tomcat-9.0.82/webapps'
 		  }}	
           
-post {
-        failure {
-                mail bcc: '', body: '', cc: '', from: '', replyTo: '', subject: 'Build failure', to: 'abhishek.pise80@gmail.com'
-	           
-	        }
-     }  
-           }
