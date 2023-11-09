@@ -24,4 +24,5 @@ pipeline {
 	     steps {
 		  sh 'cp target/Oneplus.war /home/tom/slave-dir/apache-tomcat-9.0.82/webapps'
 		  }}	
-          
+	 }
+         }
