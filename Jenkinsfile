@@ -1,6 +1,6 @@
 pipeline {
 	agent{
-	label 'Mens-label'
+	label 'pikachu-label'
 	}
 	stages {
 	    stage('Checkout') {
@@ -9,10 +9,10 @@ pipeline {
 		      }}
 		stage('Build') {
 	           steps {
-			  sh '/home/tom/slave-dir/apache-maven-3.9.5/bin/mvn install'
+			  sh '/home/pikachu/slave-dir-3/apache-maven-3.9.5/bin/mvn install'
 	                 }}
 		stage('Deployment'){
 		    steps {
-			sh 'cp target/Oneplus.war /home/tom/slave-dir/apache-tomcat-9.0.82/webapps'
+			sh 'cp target/Oneplus.war /home/pikachu/slave-dir-3/apache-tomcat-9.0.82/webapps'
 			}}	
 }}
