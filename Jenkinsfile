@@ -1,7 +1,5 @@
 pipeline {
-	agent{
-	label 'pikachu-label'
-	}
+   agent any
 	stages {
 	    stage('Checkout') {
 	        steps {
